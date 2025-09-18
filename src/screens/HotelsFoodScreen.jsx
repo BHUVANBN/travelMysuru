@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const HotelsFoodScreen = () => {
-  const [activeTab, setActiveTab] = useState('hotels')
-  const [selectedFilter, setSelectedFilter] = useState('all')
+  const [activeTab, setActiveTab] = useState('hotels');
+  const [selectedFilter, setSelectedFilter] = useState('all');
 
   const hotels = [
     {
@@ -72,7 +72,7 @@ const HotelsFoodScreen = () => {
       amenities: ["Hostel", "Common Areas", "Cafe", "Backpacker Friendly"],
       review: "Vibrant hostel perfect for young travelers and backpackers"
     }
-  ]
+  ];
 
   const restaurants = [
     {
@@ -147,13 +147,13 @@ const HotelsFoodScreen = () => {
       specialties: ["Soft Dosa", "Idli", "Vada", "Chutney"],
       review: "Legendary breakfast spot famous for soft dosas"
     }
-  ]
+  ];
 
   const getFilteredData = () => {
-    const data = activeTab === 'hotels' ? hotels : restaurants
-    if (selectedFilter === 'all') return data
-    return data.filter(item => item.category === selectedFilter)
-  }
+    const data = activeTab === 'hotels' ? hotels : restaurants;
+    if (selectedFilter === 'all') return data;
+    return data.filter(item => item.category === selectedFilter);
+  };
 
   const getFilterOptions = () => {
     if (activeTab === 'hotels') {
@@ -162,21 +162,21 @@ const HotelsFoodScreen = () => {
         { value: 'budget', label: 'Budget' },
         { value: 'mid', label: 'Mid-range' },
         { value: 'luxury', label: 'Luxury' }
-      ]
+      ];
     } else {
       return [
         { value: 'all', label: 'All Restaurants' },
         { value: 'veg', label: 'Vegetarian' },
         { value: 'nonveg', label: 'Non-Vegetarian' },
         { value: 'local', label: 'Local Food Streets' }
-      ]
+      ];
     }
-  }
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pt-[160px] md:pt-[140px]">
       {/* Header */}
-      <div className="bg-white shadow-lg">
+      <div className="bg-white shadow-lg fixed top-0 left-0 right-0 z-10">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center">
           <Link to="/" className="text-orange-600 hover:text-orange-700 mr-4">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -192,8 +192,8 @@ const HotelsFoodScreen = () => {
         <div className="flex bg-white rounded-lg p-1 mb-6 shadow-sm">
           <button
             onClick={() => {
-              setActiveTab('hotels')
-              setSelectedFilter('all')
+              setActiveTab('hotels');
+              setSelectedFilter('all');
             }}
             className={`flex-1 py-3 px-4 rounded-md font-semibold transition-colors ${
               activeTab === 'hotels'
@@ -205,8 +205,8 @@ const HotelsFoodScreen = () => {
           </button>
           <button
             onClick={() => {
-              setActiveTab('restaurants')
-              setSelectedFilter('all')
+              setActiveTab('restaurants');
+              setSelectedFilter('all');
             }}
             className={`flex-1 py-3 px-4 rounded-md font-semibold transition-colors ${
               activeTab === 'restaurants'
@@ -332,7 +332,7 @@ const HotelsFoodScreen = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HotelsFoodScreen
+export default HotelsFoodScreen;

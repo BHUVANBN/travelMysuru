@@ -1,28 +1,28 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ItineraryScreen = () => {
   const [formData, setFormData] = useState({
     travelType: '',
     budget: '',
     duration: '2'
-  })
-  const [showItinerary, setShowItinerary] = useState(false)
+  });
+  const [showItinerary, setShowItinerary] = useState(false);
 
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
-    })
-  }
+    });
+  };
 
   const generateItinerary = (e) => {
-    e.preventDefault()
-    setShowItinerary(true)
-  }
+    e.preventDefault();
+    setShowItinerary(true);
+  };
 
   const getItineraryData = () => {
-    const { travelType, budget } = formData
+    const { travelType, budget } = formData;
     
     const baseItinerary = {
       day1: {
@@ -47,32 +47,32 @@ const ItineraryScreen = () => {
           { time: "7:30 PM", activity: "Musical Fountain Show", duration: "30 minutes" }
         ]
       }
-    }
+    };
 
     // Customize based on travel type and budget
     if (travelType === 'family') {
-      baseItinerary.day1.activities[1] = { time: "11:30 AM", activity: "Visit Mysuru Zoo (family-friendly)", duration: "2 hours" }
-      baseItinerary.day2.activities[3] = { time: "2:00 PM", activity: "Rail Museum (kids will love it)", duration: "1.5 hours" }
+      baseItinerary.day1.activities[1] = { time: "11:30 AM", activity: "Visit Mysuru Zoo (family-friendly)", duration: "2 hours" };
+      baseItinerary.day2.activities[3] = { time: "2:00 PM", activity: "Rail Museum (kids will love it)", duration: "1.5 hours" };
     }
 
     if (travelType === 'solo') {
-      baseItinerary.day1.activities.push({ time: "8:00 PM", activity: "Evening photography walk", duration: "1 hour" })
-      baseItinerary.day2.activities[0] = { time: "6:00 AM", activity: "Solo meditation at Chamundi Hills", duration: "2 hours" }
+      baseItinerary.day1.activities.push({ time: "8:00 PM", activity: "Evening photography walk", duration: "1 hour" });
+      baseItinerary.day2.activities[0] = { time: "6:00 AM", activity: "Solo meditation at Chamundi Hills", duration: "2 hours" };
     }
 
     if (budget === 'luxury') {
-      baseItinerary.day1.activities[2] = { time: "1:00 PM", activity: "Fine dining at Lalitha Mahal Palace", duration: "1.5 hours" }
-      baseItinerary.day2.activities[2] = { time: "12:00 PM", activity: "Lunch at heritage hotel", duration: "1 hour" }
+      baseItinerary.day1.activities[2] = { time: "1:00 PM", activity: "Fine dining at Lalitha Mahal Palace", duration: "1.5 hours" };
+      baseItinerary.day2.activities[2] = { time: "12:00 PM", activity: "Lunch at heritage hotel", duration: "1 hour" };
     } else if (budget === 'budget') {
-      baseItinerary.day1.activities[2] = { time: "1:00 PM", activity: "Local street food tour", duration: "1 hour" }
-      baseItinerary.day2.activities[2] = { time: "12:00 PM", activity: "Lunch at local eatery", duration: "45 minutes" }
+      baseItinerary.day1.activities[2] = { time: "1:00 PM", activity: "Local street food tour", duration: "1 hour" };
+      baseItinerary.day2.activities[2] = { time: "12:00 PM", activity: "Lunch at local eatery", duration: "45 minutes" };
     }
 
-    return baseItinerary
-  }
+    return baseItinerary;
+  };
 
   const getBudgetEstimate = () => {
-    const { budget, travelType } = formData
+    const { budget, travelType } = formData;
     
     const estimates = {
       budget: {
@@ -90,15 +90,15 @@ const ItineraryScreen = () => {
         friends: "₹7,500 - ₹12,000 per person",
         solo: "₹6,000 - ₹10,000 per person"
       }
-    }
+    };
 
-    return estimates[budget]?.[travelType] || "₹3,000 - ₹5,000 per person"
-  }
+    return estimates[budget]?.[travelType] || "₹3,000 - ₹5,000 per person";
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24">
+    <div className="min-h-screen bg-gray-50 pt-[160px] md:pt-[140px]">
       {/* Header */}
-      <div className="bg-white shadow-lg">
+      <div className="bg-white shadow-lg fixed top-0 left-0 right-0 z-10">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center">
           <Link to="/" className="text-orange-600 hover:text-orange-700 mr-4">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -283,7 +283,7 @@ const ItineraryScreen = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ItineraryScreen
+export default ItineraryScreen;
