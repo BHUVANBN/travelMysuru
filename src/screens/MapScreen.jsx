@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import '../components/MapStyles.css'
 import L from 'leaflet'
+import { useDarkMode } from '../contexts/DarkModeContext'
 
 // Fix for default markers in react-leaflet
 delete L.Icon.Default.prototype._getIconUrl
@@ -11,9 +12,11 @@ L.Icon.Default.mergeOptions({
   iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 })
+
 const MapScreen = () => {
   const [selectedLandmark, setSelectedLandmark] = useState(null)
   const [showContributeForm, setShowContributeForm] = useState(false)
+  const { isDarkMode } = useDarkMode()
 
   const landmarks = [
     {
@@ -83,13 +86,13 @@ const MapScreen = () => {
   }
 
   return (
-    <div className="bg-gray-50 pt-20">
+    <div className={`min-h-screen pt-20 transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
       {/* Page Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
+      <div className={`bg-white shadow-sm border-b border-gray-200 transition-colors duration-300 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="text-center">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Interactive Map</h1>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <h1 className={`text-3xl md:text-4xl font-bold transition-colors duration-300 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>Interactive Map</h1>
+            <p className={`text-gray-600 max-w-2xl mx-auto transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
               Explore Mysuru's landmarks and attractions. Click on any pin to learn more about the location and discover its stories.
             </p>
           </div>
@@ -101,7 +104,9 @@ const MapScreen = () => {
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Interactive Map */}
           <div className="lg:w-2/3">
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div className={`rounded-2xl shadow-xl overflow-hidden transition-colors duration-300 ${
+              isDarkMode ? 'bg-gray-800' : 'bg-white'
+            }`}>
               <MapContainer
                 center={[12.2958, 76.6394]}
                 zoom={12}
@@ -110,7 +115,10 @@ const MapScreen = () => {
                 zoomControl={true}
               >
                 <TileLayer
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  url={isDarkMode 
+                    ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                    : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  }
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
                 {landmarks.map((landmark) => (
@@ -131,9 +139,13 @@ const MapScreen = () => {
                       <div className="p-3">
                         <div className="flex items-center mb-3">
                           <span className="text-2xl mr-2">{landmark.icon}</span>
-                          <h3 className="font-semibold text-lg text-gray-800">{landmark.name}</h3>
+                          <h3 className={`font-semibold text-lg transition-colors duration-300 ${
+                            isDarkMode ? 'text-gray-100' : 'text-gray-800'
+                          }`}>{landmark.name}</h3>
                         </div>
-                        <p className="text-gray-600 text-sm leading-relaxed mb-3">{landmark.story}</p>
+                        <p className={`text-gray-600 text-sm leading-relaxed mb-3 transition-colors duration-300 ${
+                          isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                        }`}>{landmark.story}</p>
                         <div className="grid grid-cols-2 gap-1 mb-3">
                           {landmark.photos.map((photo, index) => (
                             <img
@@ -160,14 +172,20 @@ const MapScreen = () => {
 
           {/* Info Panel */}
           <div className="lg:w-1/3">
-            <div className="bg-white rounded-2xl shadow-xl p-6 relative z-10">
+            <div className={`rounded-2xl shadow-xl p-6 relative z-10 transition-colors duration-300 ${
+              isDarkMode ? 'bg-gray-800' : 'bg-white'
+            }`}>
               {selectedLandmark ? (
                 <div>
                   <div className="flex items-center mb-4">
                     <span className="text-3xl mr-3">{selectedLandmark.icon}</span>
-                    <h2 className="text-xl font-bold text-gray-800">{selectedLandmark.name}</h2>
+                    <h2 className={`text-xl font-bold transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-100' : 'text-gray-800'
+                    }`}>{selectedLandmark.name}</h2>
                   </div>
-                  <p className="text-gray-600 leading-relaxed mb-4">{selectedLandmark.story}</p>
+                  <p className={`leading-relaxed mb-4 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                  }`}>{selectedLandmark.story}</p>
                   <div className="grid grid-cols-2 gap-2 mb-4">
                     {selectedLandmark.photos.map((photo, index) => (
                       <img
@@ -186,16 +204,24 @@ const MapScreen = () => {
                   </button>
                 </div>
               ) : (
-                <div className="text-center text-gray-500">
+                <div className={`text-center transition-colors duration-300 ${
+                  isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                }`}>
                   <div className="text-4xl mb-4">🗺️</div>
                   <p className="mb-4">Click on any marker to explore Mysuru's landmarks and learn their stories!</p>
                   
                   {/* Map Legend */}
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h3 className="font-semibold text-sm mb-3 text-gray-800">Available Landmarks</h3>
+                  <div className={`rounded-lg p-4 transition-colors duration-300 ${
+                    isDarkMode ? 'bg-gray-700' : 'bg-gray-50'
+                  }`}>
+                    <h3 className={`font-semibold text-sm mb-3 transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-200' : 'text-gray-800'
+                    }`}>Available Landmarks</h3>
                     <div className="space-y-2">
                       {landmarks.map((landmark) => (
-                        <div key={landmark.id} className="flex items-center text-xs text-gray-600">
+                        <div key={landmark.id} className={`flex items-center text-xs transition-colors duration-300 ${
+                          isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                        }`}>
                           <span className="mr-2 text-lg">{landmark.icon}</span>
                           <span>{landmark.name}</span>
                         </div>
@@ -209,8 +235,12 @@ const MapScreen = () => {
         </div>
 
         {/* Instructions */}
-        <div className="mt-6 bg-orange-50 rounded-lg p-4">
-          <p className="text-orange-800 text-center">
+        <div className={`mt-6 bg-orange-50 rounded-lg p-4 transition-colors duration-300 ${
+          isDarkMode ? 'bg-gray-700' : 'bg-orange-50'
+        }`}>
+          <p className={`text-orange-800 text-center transition-colors duration-300 ${
+            isDarkMode ? 'text-gray-200' : 'text-orange-800'
+          }`}>
             <span className="font-semibold">💡 Tip:</span> Click on any marker on the map to learn more about it and see photos!
           </p>
         </div>
@@ -218,11 +248,17 @@ const MapScreen = () => {
 
       {/* Landmark Modal */}
       {selectedLandmark && !showContributeForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[9999]">
-          <div className="bg-white rounded-2xl max-w-md w-full max-h-[80vh] overflow-y-auto">
+        <div className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[9999] transition-colors duration-300 ${
+          isDarkMode ? 'bg-gray-900' : 'bg-black'
+        }`}>
+          <div className={`bg-white rounded-2xl max-w-md w-full max-h-[80vh] overflow-y-auto transition-colors duration-300 ${
+            isDarkMode ? 'bg-gray-800' : 'bg-white'
+          }`}>
             <div className="p-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-2xl font-bold text-gray-800 flex items-center">
+                <h2 className={`text-2xl font-bold transition-colors duration-300 ${
+                  isDarkMode ? 'text-gray-100' : 'text-gray-800'
+                } flex items-center`}>
                   <span className="mr-2 text-3xl">{selectedLandmark.icon}</span>
                   {selectedLandmark.name}
                 </h2>
@@ -238,13 +274,19 @@ const MapScreen = () => {
 
               {/* Story */}
               <div className="mb-6">
-                <h3 className="font-semibold text-gray-800 mb-2">Story</h3>
-                <p className="text-gray-600 leading-relaxed">{selectedLandmark.story}</p>
+                <h3 className={`font-semibold text-gray-800 mb-2 transition-colors duration-300 ${
+                  isDarkMode ? 'text-gray-200' : 'text-gray-800'
+                }`}>Story</h3>
+                <p className={`text-gray-600 leading-relaxed transition-colors duration-300 ${
+                  isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                }`}>{selectedLandmark.story}</p>
               </div>
 
               {/* Photos */}
               <div className="mb-6">
-                <h3 className="font-semibold text-gray-800 mb-3">Photos</h3>
+                <h3 className={`font-semibold text-gray-800 mb-3 transition-colors duration-300 ${
+                  isDarkMode ? 'text-gray-200' : 'text-gray-800'
+                }`}>Photos</h3>
                 <div className="grid grid-cols-2 gap-2">
                   {selectedLandmark.photos.map((photo, index) => (
                     <img
@@ -271,11 +313,17 @@ const MapScreen = () => {
 
       {/* Contribution Form Modal */}
       {showContributeForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl max-w-md w-full">
+        <div className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 transition-colors duration-300 ${
+          isDarkMode ? 'bg-gray-900' : 'bg-black'
+        }`}>
+          <div className={`bg-white rounded-2xl max-w-md w-full transition-colors duration-300 ${
+            isDarkMode ? 'bg-gray-800' : 'bg-white'
+          }`}>
             <div className="p-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-bold text-gray-800">Share Your Experience</h2>
+                <h2 className={`text-xl font-bold transition-colors duration-300 ${
+                  isDarkMode ? 'text-gray-100' : 'text-gray-800'
+                }`}>Share Your Experience</h2>
                 <button
                   onClick={closeModal}
                   className="text-gray-500 hover:text-gray-700"
@@ -288,35 +336,49 @@ const MapScreen = () => {
 
               <form className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className={`block text-sm font-medium text-gray-700 mb-2 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-200' : 'text-gray-700'
+                  }`}>
                     Upload Photo
                   </label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                  <div className={`border-2 border-dashed border-gray-300 rounded-lg p-6 text-center transition-colors duration-300 ${
+                    isDarkMode ? 'border-gray-500' : 'border-gray-300'
+                  }`}>
                     <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
                       <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                    <p className="mt-2 text-sm text-gray-600">Click to upload or drag and drop</p>
+                    <p className={`mt-2 text-sm text-gray-600 transition-colors duration-300 ${
+                      isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                    }`}>Click to upload or drag and drop</p>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className={`block text-sm font-medium text-gray-700 mb-2 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-200' : 'text-gray-700'
+                  }`}>
                     Your Story/Caption
                   </label>
                   <textarea
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className={`w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors duration-300 ${
+                      isDarkMode ? 'bg-gray-700' : 'bg-white'
+                    }`}
                     rows="4"
                     placeholder="Share your experience at this landmark..."
                   ></textarea>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className={`block text-sm font-medium text-gray-700 mb-2 transition-colors duration-300 ${
+                    isDarkMode ? 'text-gray-200' : 'text-gray-700'
+                  }`}>
                     Your Name (Optional)
                   </label>
                   <input
                     type="text"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className={`w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors duration-300 ${
+                      isDarkMode ? 'bg-gray-700' : 'bg-white'
+                    }`}
                     placeholder="Enter your name"
                   />
                 </div>

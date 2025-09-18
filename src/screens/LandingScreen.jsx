@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import HomeScreen from './HomeScreen'
 import { api, setToken } from '../services/api'
+import { useDarkMode } from '../contexts/DarkModeContext'
 
 const isAuthed = () => {
   try { return !!localStorage.getItem('authToken') } catch { return false }
@@ -16,6 +17,7 @@ const LandingScreen = () => {
   const [loginLoading, setLoginLoading] = useState(false)
   const bannerRef = useRef(null)
   const sectionsRef = useRef([])
+  const { isDarkMode } = useDarkMode()
 
   useEffect(() => {
     const update = () => setAuthed(isAuthed())
@@ -108,16 +110,53 @@ const LandingScreen = () => {
   if (authed) return <HomeScreen />
 
   return (
-    <div className="landing-page">  
+    <div className={`landing-page ${isDarkMode ? 'dark-mode' : ''}`}>  
       {/* Custom Styles */}
       <style jsx>{`
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600&display=swap');
         
         .landing-page {
           margin: 0;
-          background-color: #210002;
+          background-color: ${isDarkMode ? '#111827' : '#210002'};
           font-family: 'Poppins', sans-serif;
           font-size: 15px;
+          transition: background-color 0.3s ease;
+        }
+
+        .dark-mode .intro-section {
+          background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('/Landing_Page/img/About_BG.jpg');
+        }
+
+        .dark-mode .intro-section::before {
+          background: rgba(17, 24, 39, 0.7);
+        }
+
+        .dark-mode .contact-section {
+          background: ${isDarkMode ? '#374151' : '#fa9f1b'};
+        }
+
+        .dark-mode .modal-content {
+          background: #374151;
+          color: #f3f4f6;
+        }
+
+        .dark-mode .modal-title {
+          color: #f3f4f6;
+        }
+
+        .dark-mode .form-label {
+          color: #d1d5db;
+        }
+
+        .dark-mode .login-input {
+          background-color: #4b5563;
+          border-color: #6b7280;
+          color: #f3f4f6;
+        }
+
+        .dark-mode .login-input:focus {
+          border-color: #f97316;
+          box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
         }
 
         .custom-navbar {
