@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const EventsScreen = () => {
-  const [selectedCategory, setSelectedCategory] = useState('All')
-  const [showRegistrationForm, setShowRegistrationForm] = useState(false)
-  const [selectedEvent, setSelectedEvent] = useState(null)
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [showRegistrationForm, setShowRegistrationForm] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
-  const categories = ['All', 'Cultural', 'Social', 'Technical', 'Youth']
+  const categories = ['All', 'Cultural', 'Social', 'Technical', 'Youth'];
 
   const events = [
     {
@@ -90,26 +90,26 @@ const EventsScreen = () => {
       image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       price: "Free"
     }
-  ]
+  ];
 
   const filteredEvents = selectedCategory === 'All' 
     ? events 
-    : events.filter(event => event.category === selectedCategory)
+    : events.filter(event => event.category === selectedCategory);
 
   const handleRegister = (event) => {
-    setSelectedEvent(event)
-    setShowRegistrationForm(true)
-  }
+    setSelectedEvent(event);
+    setShowRegistrationForm(true);
+  };
 
   const closeModal = () => {
-    setShowRegistrationForm(false)
-    setSelectedEvent(null)
-  }
+    setShowRegistrationForm(false);
+    setSelectedEvent(null);
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pt-[120px] md:pt-[100px]">
       {/* Header */}
-      <div className="bg-white shadow-lg">
+      <div className="bg-white shadow-lg fixed top-0 left-0 right-0 z-10">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center">
           <Link to="/" className="text-orange-600 hover:text-orange-700 mr-4">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -323,7 +323,7 @@ const EventsScreen = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default EventsScreen
+export default EventsScreen;

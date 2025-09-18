@@ -1,8 +1,8 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const SafetyScreen = () => {
-  const [selectedCategory, setSelectedCategory] = useState('emergency')
+  const [selectedCategory, setSelectedCategory] = useState('emergency');
 
   const emergencyContacts = [
     {
@@ -47,7 +47,7 @@ const SafetyScreen = () => {
       icon: "👶",
       description: "Child protection and assistance"
     }
-  ]
+  ];
 
   const hospitals = [
     {
@@ -90,7 +90,7 @@ const SafetyScreen = () => {
       emergency: "24/7",
       icon: "🏥"
     }
-  ]
+  ];
 
   const safetyTips = [
     {
@@ -148,7 +148,7 @@ const SafetyScreen = () => {
         "Learn basic Kannada phrases for better interaction"
       ]
     }
-  ]
+  ];
 
   const policeStations = [
     {
@@ -175,7 +175,7 @@ const SafetyScreen = () => {
       phone: "0821-2515678",
       area: "Nazarbad"
     }
-  ]
+  ];
 
   const renderContent = () => {
     switch (selectedCategory) {
@@ -200,7 +200,7 @@ const SafetyScreen = () => {
               </div>
             ))}
           </div>
-        )
+        );
 
       case 'hospitals':
         return (
@@ -238,7 +238,7 @@ const SafetyScreen = () => {
               </div>
             ))}
           </div>
-        )
+        );
 
       case 'police':
         return (
@@ -271,7 +271,7 @@ const SafetyScreen = () => {
               </div>
             ))}
           </div>
-        )
+        );
 
       case 'tips':
         return (
@@ -293,17 +293,17 @@ const SafetyScreen = () => {
               </div>
             ))}
           </div>
-        )
+        );
 
       default:
-        return null
+        return null;
     }
-  }
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24">
+    <div className="min-h-screen bg-gray-50 pt-[160px] md:pt-[140px]">
       {/* Header */}
-      <div className="bg-white shadow-lg">
+      <div className="bg-white shadow-lg fixed top-0 left-0 right-0 z-10">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center">
           <Link to="/" className="text-orange-600 hover:text-orange-700 mr-4">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -396,7 +396,7 @@ const SafetyScreen = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SafetyScreen
+export default SafetyScreen;
