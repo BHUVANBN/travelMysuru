@@ -1,8 +1,8 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const EcoTravelScreen = () => {
-  const [selectedCategory, setSelectedCategory] = useState('transport')
+  const [selectedCategory, setSelectedCategory] = useState('transport');
 
   const ecoTransport = [
     {
@@ -37,7 +37,7 @@ const EcoTravelScreen = () => {
       cost: "₹10-20 per km",
       tips: "Look for green-colored autos"
     }
-  ]
+  ];
 
   const ecoAccommodation = [
     {
@@ -67,7 +67,7 @@ const EcoTravelScreen = () => {
       rating: 4.2,
       description: "Hotels with certified green practices"
     }
-  ]
+  ];
 
   const sustainableActivities = [
     {
@@ -118,7 +118,7 @@ const EcoTravelScreen = () => {
       duration: "1-2 hours",
       cost: "₹200-600"
     }
-  ]
+  ];
 
   const ecoTips = [
     {
@@ -161,7 +161,7 @@ const EcoTravelScreen = () => {
         "Choose locally-sourced products"
       ]
     }
-  ]
+  ];
 
   const carbonOffset = [
     {
@@ -185,7 +185,7 @@ const EcoTravelScreen = () => {
       impact: "Reduces landfill waste",
       location: "City-wide programs"
     }
-  ]
+  ];
 
   const renderContent = () => {
     switch (selectedCategory) {
@@ -217,7 +217,7 @@ const EcoTravelScreen = () => {
               </div>
             ))}
           </div>
-        )
+        );
 
       case 'accommodation':
         return (
@@ -251,7 +251,7 @@ const EcoTravelScreen = () => {
               </div>
             ))}
           </div>
-        )
+        );
 
       case 'activities':
         return (
@@ -280,7 +280,7 @@ const EcoTravelScreen = () => {
               </div>
             ))}
           </div>
-        )
+        );
 
       case 'tips':
         return (
@@ -302,7 +302,7 @@ const EcoTravelScreen = () => {
               </div>
             ))}
           </div>
-        )
+        );
 
       case 'offset':
         return (
@@ -328,17 +328,17 @@ const EcoTravelScreen = () => {
               </div>
             ))}
           </div>
-        )
+        );
 
       default:
-        return null
+        return null;
     }
-  }
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-12">
+    <div className="min-h-screen bg-gray-50 pt-[160px] md:pt-[140px]">
       {/* Header */}
-      <div className="bg-white shadow-lg">
+      <div className="bg-white shadow-lg fixed top-0 left-0 right-0 z-10">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center">
           <Link to="/" className="text-orange-600 hover:text-orange-700 mr-4">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -420,7 +420,7 @@ const EcoTravelScreen = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default EcoTravelScreen
+export default EcoTravelScreen;
