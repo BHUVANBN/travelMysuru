@@ -1,0 +1,91 @@
+/* Custom styles for Leaflet map components */
+
+/* Ensure map popups appear above other elements */
+.leaflet-popup-pane {
+  z-index: 1000 !important;
+}
+
+.leaflet-marker-pane {
+  z-index: 600 !important;
+}
+
+.leaflet-shadow-pane {
+  z-index: 500 !important;
+}
+
+.leaflet-overlay-pane {
+  z-index: 400 !important;
+}
+
+.leaflet-map-pane {
+  z-index: 100 !important;
+}
+
+.leaflet-tile-pane {
+  z-index: 200 !important;
+}
+
+/* Custom popup styling */
+.leaflet-popup-content-wrapper {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border: none;
+  padding: 0;
+  max-width: 320px !important;
+  min-width: 260px !important;
+}
+
+.leaflet-popup-content {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  width: auto !important;
+}
+
+.leaflet-popup-tip {
+  background: white;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.custom-popup .leaflet-popup-content-wrapper {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  max-width: 320px !important;
+  min-width: 260px !important;
+}
+
+.custom-popup .leaflet-popup-tip {
+  background: white;
+}
+
+.custom-popup .leaflet-popup-content {
+  margin: 0;
+  padding: 0;
+  width: auto !important;
+}
+
+/* Ensure markers are clickable and visible */
+.leaflet-marker-icon {
+  z-index: 600 !important;
+}
+
+.leaflet-marker-shadow {
+  z-index: 500 !important;
+}
+
+/* Map container styling */
+.leaflet-container {
+  z-index: 1 !important;
+}
+
+/* Ensure control buttons are visible */
+.leaflet-control-zoom {
+  z-index: 1000 !important;
+}
+
+.leaflet-control-attribution {
+  z-index: 1000 !important;
+}
