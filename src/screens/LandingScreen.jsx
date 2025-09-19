@@ -43,6 +43,12 @@ const LandingScreen = () => {
         }
       })
 
+      // Banner title parallax effect
+      const titleBanner = document.querySelector('.banner-title')
+      if (titleBanner) {
+        titleBanner.style.transform = `translateY(${scrollY * 4 / 2}px)`
+      }
+
       // Animation trigger for sections
       const sections = document.querySelectorAll('.animation-section')
       sections.forEach(section => {
@@ -124,7 +130,7 @@ const LandingScreen = () => {
         }
 
         .dark-mode .intro-section {
-          background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('/Landing_Page/img/About_BG.jpg');
+          background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('/About_BG.jpg');
         }
 
         .dark-mode .intro-section::before {
@@ -257,16 +263,16 @@ const LandingScreen = () => {
           transition: 0.1s;
         }
 
-        .bg-1 { background-image: url('/Landing_Page/img/0.png'); }
-        .bg-2 { background-image: url('/Landing_Page/img/1.png'); }
-        .bg-3 { background-image: url('/Landing_Page/img/2.png'); }
-        .bg-4 { background-image: url('/Landing_Page/img/Travel_Mysuru.svg'); }
-        .bg-5 { background-image: url('/Landing_Page/img/4.png'); }
-        .bg-6 { background-image: url('/Landing_Page/img/5.png'); }
-        .bg-7 { background-image: url('/Landing_Page/img/6.png'); }
-        .bg-8 { background-image: url('/Landing_Page/img/7.png'); }
-        .bg-9 { background-image: url('/Landing_Page/img/8.svg'); }
-        .bg-12 { background-image: url('/Landing_Page/img/14.png'); }
+        .bg-1 { background-image: url('/0.png'); }
+        .bg-2 { background-image: url('/1.png'); }
+        .bg-3 { background-image: url('/2.png'); }
+        .bg-4 { background-image: url('/Travel_Mysuru.svg'); }
+        .bg-5 { background-image: url('/4.png'); }
+        .bg-6 { background-image: url('/5.png'); }
+        .bg-7 { background-image: url('/6.png'); }
+        .bg-8 { background-image: url('/7.png'); }
+        .bg-9 { background-image: url('/8.svg'); }
+        .bg-12 { background-image: url('/14.png'); }
 
         .intro-section {
           min-height: 50vh;
@@ -276,7 +282,7 @@ const LandingScreen = () => {
           justify-content: center;
           align-items: center;
           padding: 50px 20px;
-          background-image: url('/Landing_Page/img/About_BG.jpg');
+          background-image: url('/About_BG.jpg');
           background-size: cover;
           background-position: center;
           background-repeat: no-repeat;
@@ -706,14 +712,15 @@ const LandingScreen = () => {
         <div className="parallax-bg bg-8"></div>
         <div className="parallax-bg bg-9"></div>
         <div className="parallax-bg bg-12"></div>
+        <h1 className="banner-title animation-show text-6xl font-bold mb-6">Namma Mysuru</h1>
       </div>
 
       {/* About Section */}
       <div className="intro-section animation-section" id="about">
         <h2 className="animation-show text-4xl font-bold mb-6">Namma Mysuru</h2>
-        <img src="/Landing_Page/img/image.png" alt="Mysuru" className="animation-show intro-image mb-6" />
+        <img src="/image.png" alt="Mysuru" className="animation-show intro-image mb-6" />
         <p className="animation-show intro-text mb-6">
-          🌸 Welcome to Namma Mysuru 🌸<br/><br/>
+          Welcome to Namma Mysuru<br/><br/>
           A digital gateway to the heart of the Royal City.<br/><br/>
           Mysuru is more than just a destination—it's an experience of heritage, culture, and modern living. With Namma Mysuru, we bring every detail of the city to your fingertips, creating a seamless journey for citizens and visitors alike.<br/><br/>
           Welcome to our travel world! We are passionate about creating unforgettable journeys that connect you with incredible destinations around the globe. Our expert team curates unique experiences that blend adventure, culture, and comfort, ensuring every trip becomes a cherished memory. From exotic beaches to mountain peaks, ancient cities to modern marvels, we bring you closer to the world's most amazing places.
@@ -724,7 +731,7 @@ const LandingScreen = () => {
       {/* Features/Tour Section */}
       <div className="features-grid animation-section" id="tour">
         <div className="animation-show feature-card">
-          <img src="/Landing_Page/img/map.jpg" alt="Interactive Map" className="feature-image" />
+          <img src="/map.jpg" alt="Interactive Map" className="feature-image" />
           <div className="feature-description">
             <div>Explore Mysuru with an interactive map that highlights every landmark, road, and hidden gem. Tap to uncover history, stories, and user-shared experiences.</div>
           </div>
@@ -732,7 +739,7 @@ const LandingScreen = () => {
         </div>
         
         <div className="animation-show feature-card">
-          <img src="/Landing_Page/img/events.jpg" alt="Events" className="feature-image" />
+          <img src="/events.jpg" alt="Events" className="feature-image" />
           <div className="feature-description">
             <div>Stay updated on Mysuru's vibrant festivals, cultural shows, and local events. Get dates, details, and even register directly within the app.</div>
           </div>
@@ -740,7 +747,7 @@ const LandingScreen = () => {
         </div>
         
         <div className="animation-show feature-card">
-          <img src="/Landing_Page/img/planner.jpg" alt="Itinerary Planner" className="feature-image" />
+          <img src="/planner.jpg" alt="Itinerary Planner" className="feature-image" />
           <div className="feature-description">
             <div>Plan your trip in minutes! Choose your budget, travel style, and preferences to generate a personalized day-by-day itinerary.</div>
           </div>
@@ -748,7 +755,7 @@ const LandingScreen = () => {
         </div>
         
         <div className="animation-show feature-card">
-          <img src="/Landing_Page/img/hotel.jpg" alt="Hotels & Dining" className="feature-image" />
+          <img src="/hotel.jpg" alt="Hotels & Dining" className="feature-image" />
           <div className="feature-description">
             <div>Find the perfect hotel, resort, or restaurant with detailed info, pricing, and filters for veg, non-veg, or budget-friendly dining.</div>
           </div>
@@ -756,7 +763,7 @@ const LandingScreen = () => {
         </div>
         
         <div className="animation-show feature-card">
-          <img src="/Landing_Page/img/transport.jpg" alt="Transport" className="feature-image" />
+          <img src="/transport.jpg" alt="Transport" className="feature-image" />
           <div className="feature-description">
             <div>Navigate the city with ease—find bus routes, metro info, auto-rickshaw guides, and even airport/train details in one place.</div>
           </div>
@@ -764,7 +771,7 @@ const LandingScreen = () => {
         </div>
         
         <div className="animation-show feature-card">
-          <img src="/Landing_Page/img/safety.jpg" alt="Safety Info" className="feature-image" />
+          <img src="/safety.jpg" alt="Safety Info" className="feature-image" />
           <div className="feature-description">
             <div>Access essential details like emergency helplines, hospital and police station locations, and quick safety tips to travel worry-free.</div>
           </div>
@@ -772,7 +779,7 @@ const LandingScreen = () => {
         </div>
         
         <div className="animation-show feature-card">
-          <img src="/Landing_Page/img/community.jpg" alt="Community" className="feature-image" />
+          <img src="/community.jpg" alt="Community" className="feature-image" />
           <div className="feature-description">
             <div>Share your travel stories, photos, and videos with the Mysuru community and get inspired by authentic experiences from others.</div>
           </div>
@@ -780,7 +787,7 @@ const LandingScreen = () => {
         </div>
         
         <div className="animation-show feature-card">
-          <img src="/Landing_Page/img/eco_travel.jpg" alt="Eco Travel" className="feature-image" />
+          <img src="/eco_travel.jpg" alt="Eco Travel" className="feature-image" />
           <div className="feature-description">
             <div>Choose eco-friendly travel with green transport, eco-stays, sustainable activities, and carbon offset tips to explore responsibly.</div>
           </div>
