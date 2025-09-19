@@ -618,6 +618,11 @@ const LandingScreen = () => {
             margin: 10px;
             padding: 24px;
           }
+
+          .banner-title {
+            font-size: 5rem;
+            margin-top: 80px;
+          }
         }
 
         @media screen and (max-width: 480px) {
@@ -629,6 +634,10 @@ const LandingScreen = () => {
           .navbar-main {
             flex-wrap: wrap;
             gap: 15px;
+          }
+
+          .banner-title {
+            margin-top: 40px;
           }
         }
       `}</style>
