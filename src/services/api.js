@@ -1,5 +1,5 @@
 // src/services/api.js
-const rawBaseUrl = import.meta.env.VITE_API_BASE_URL || ''
+const rawBaseUrl = import.meta.env.VITE_API_BASE_URL || 'https://travelmysuru.onrender.com'
 export const BASE_URL = rawBaseUrl.replace(/\/+$/, '')
 let authToken = null
 
