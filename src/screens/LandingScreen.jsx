@@ -18,6 +18,7 @@ const LandingScreen = () => {
   const bannerRef = useRef(null)
   const sectionsRef = useRef([])
   const { isDarkMode } = useDarkMode()
+  const base = import.meta.env.BASE_URL || '/'
 
   useEffect(() => {
     const update = () => setAuthed(isAuthed())
@@ -130,7 +131,7 @@ const LandingScreen = () => {
         }
 
         .dark-mode .intro-section {
-          background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('/About_BG.jpg');
+          background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('${base}About_BG.jpg');
         }
 
         .dark-mode .intro-section::before {
@@ -263,16 +264,16 @@ const LandingScreen = () => {
           transition: 0.1s;
         }
 
-        .bg-1 { background-image: url('/0.png'); }
-        .bg-2 { background-image: url('/1.png'); }
-        .bg-3 { background-image: url('/2.png'); }
-        .bg-4 { background-image: url('/Travel_Mysuru.svg'); }
-        .bg-5 { background-image: url('/4.png'); }
-        .bg-6 { background-image: url('/5.png'); }
-        .bg-7 { background-image: url('/6.png'); }
-        .bg-8 { background-image: url('/7.png'); }
-        .bg-9 { background-image: url('/8.svg'); }
-        .bg-12 { background-image: url('/14.png'); }
+        .bg-1 { background-image: url('${base}0.png'); }
+        .bg-2 { background-image: url('${base}1.png'); }
+        .bg-3 { background-image: url('${base}2.png'); }
+        .bg-4 { background-image: url('${base}Travel_Mysuru.svg'); }
+        .bg-5 { background-image: url('${base}4.png'); }
+        .bg-6 { background-image: url('${base}5.png'); }
+        .bg-7 { background-image: url('${base}6.png'); }
+        .bg-8 { background-image: url('${base}7.png'); }
+        .bg-9 { background-image: url('${base}8.svg'); }
+        .bg-12 { background-image: url('${base}14.png'); }
 
         .intro-section {
           min-height: 50vh;
@@ -282,7 +283,7 @@ const LandingScreen = () => {
           justify-content: center;
           align-items: center;
           padding: 50px 20px;
-          background-image: url('/About_BG.jpg');
+          background-image: url('${base}About_BG.jpg');
           background-size: cover;
           background-position: center;
           background-repeat: no-repeat;
@@ -727,7 +728,7 @@ const LandingScreen = () => {
       {/* About Section */}
       <div className="intro-section animation-section" id="about">
         <h2 className="animation-show text-4xl font-bold mb-6">Namma Mysuru</h2>
-        <img src="/image.png" alt="Mysuru" className="animation-show intro-image mb-6" />
+        <img src={`${base}image.png`} alt="Mysuru" className="animation-show intro-image mb-6" />
         <p className="animation-show intro-text mb-6">
           Welcome to Namma Mysuru<br/><br/>
           A digital gateway to the heart of the Royal City.<br/><br/>
@@ -740,7 +741,7 @@ const LandingScreen = () => {
       {/* Features/Tour Section */}
       <div className="features-grid animation-section" id="tour">
         <div className="animation-show feature-card">
-          <img src="/map.jpg" alt="Interactive Map" className="feature-image" />
+          <img src={`${base}map.jpg`} alt="Interactive Map" className="feature-image" />
           <div className="feature-description">
             <div>Explore Mysuru with an interactive map that highlights every landmark, road, and hidden gem. Tap to uncover history, stories, and user-shared experiences.</div>
           </div>
@@ -748,7 +749,7 @@ const LandingScreen = () => {
         </div>
         
         <div className="animation-show feature-card">
-          <img src="/events.jpg" alt="Events" className="feature-image" />
+          <img src={`${base}events.jpg`} alt="Events" className="feature-image" />
           <div className="feature-description">
             <div>Stay updated on Mysuru's vibrant festivals, cultural shows, and local events. Get dates, details, and even register directly within the app.</div>
           </div>
@@ -756,7 +757,7 @@ const LandingScreen = () => {
         </div>
         
         <div className="animation-show feature-card">
-          <img src="/planner.jpg" alt="Itinerary Planner" className="feature-image" />
+          <img src={`${base}planner.jpg`} alt="Itinerary Planner" className="feature-image" />
           <div className="feature-description">
             <div>Plan your trip in minutes! Choose your budget, travel style, and preferences to generate a personalized day-by-day itinerary.</div>
           </div>
@@ -764,7 +765,7 @@ const LandingScreen = () => {
         </div>
         
         <div className="animation-show feature-card">
-          <img src="/hotel.jpg" alt="Hotels & Dining" className="feature-image" />
+          <img src={`${base}hotel.jpg`} alt="Hotels & Dining" className="feature-image" />
           <div className="feature-description">
             <div>Find the perfect hotel, resort, or restaurant with detailed info, pricing, and filters for veg, non-veg, or budget-friendly dining.</div>
           </div>
@@ -772,7 +773,7 @@ const LandingScreen = () => {
         </div>
         
         <div className="animation-show feature-card">
-          <img src="/transport.jpg" alt="Transport" className="feature-image" />
+          <img src={`${base}transport.jpg`} alt="Transport" className="feature-image" />
           <div className="feature-description">
             <div>Navigate the city with ease—find bus routes, metro info, auto-rickshaw guides, and even airport/train details in one place.</div>
           </div>
@@ -780,7 +781,7 @@ const LandingScreen = () => {
         </div>
         
         <div className="animation-show feature-card">
-          <img src="/safety.jpg" alt="Safety Info" className="feature-image" />
+          <img src={`${base}safety.jpg`} alt="Safety Info" className="feature-image" />
           <div className="feature-description">
             <div>Access essential details like emergency helplines, hospital and police station locations, and quick safety tips to travel worry-free.</div>
           </div>
@@ -788,7 +789,7 @@ const LandingScreen = () => {
         </div>
         
         <div className="animation-show feature-card">
-          <img src="/community.jpg" alt="Community" className="feature-image" />
+          <img src={`${base}community.jpg`} alt="Community" className="feature-image" />
           <div className="feature-description">
             <div>Share your travel stories, photos, and videos with the Mysuru community and get inspired by authentic experiences from others.</div>
           </div>
@@ -796,7 +797,7 @@ const LandingScreen = () => {
         </div>
         
         <div className="animation-show feature-card">
-          <img src="/eco_travel.jpg" alt="Eco Travel" className="feature-image" />
+          <img src={`${base}eco_travel.jpg`} alt="Eco Travel" className="feature-image" />
           <div className="feature-description">
             <div>Choose eco-friendly travel with green transport, eco-stays, sustainable activities, and carbon offset tips to explore responsibly.</div>
           </div>
