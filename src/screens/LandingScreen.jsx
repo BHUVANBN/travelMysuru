@@ -51,7 +51,7 @@ const LandingScreen = () => {
       }
 
       // Animation trigger for sections
-      const sections = document.querySelectorAll('.animation-section')
+      const sections = document.querySelectorAll('.tab')
       sections.forEach(section => {
         if (section.offsetTop - scrollY < 550) {
           section.classList.add('active')
@@ -66,6 +66,9 @@ const LandingScreen = () => {
   }, [])
 
   const scrollToSection = (sectionId) => {
+    if (sectionId === 'services' || sectionId === 'tour') {
+      sectionId = 'tour'
+    }
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ 
@@ -262,6 +265,20 @@ const LandingScreen = () => {
           background-size: auto 100%;
           background-position: center bottom;
           transition: 0.1s;
+        }
+
+        /* Match original banner title styling */
+        .banner-title {
+          position: absolute;
+          top: 20%;
+          left: 0;
+          width: 100%;
+          text-align: center;
+          font-size: 11rem;
+          font-family: 'Pacifico', cursive;
+          color: #fff;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+          pointer-events: none;
         }
 
         .bg-1 { background-image: url('${base}0.png'); }
@@ -712,21 +729,20 @@ const LandingScreen = () => {
         */}
       {/* Banner with Parallax Effect */}
       <div className="banner" ref={bannerRef}>
-        <div className="parallax-bg bg-1"></div>
-        <div className="parallax-bg bg-2"></div>
-        <div className="parallax-bg bg-3"></div>
-        <div className="parallax-bg bg-4"></div>
-        <div className="parallax-bg bg-5"></div>
-        <div className="parallax-bg bg-6"></div>
-        <div className="parallax-bg bg-7"></div>
-        <div className="parallax-bg bg-8"></div>
-        <div className="parallax-bg bg-9"></div>
-        <div className="parallax-bg bg-12"></div>
-        <h1 className="banner-title animation-show text-6xl font-bold mb-6">Namma Mysuru</h1>
+        <div className="parallax-bg bg bg-1"></div>
+        <div className="parallax-bg bg bg-2"></div>
+        <div className="parallax-bg bg bg-3"></div>
+        <div className="parallax-bg bg bg-4"></div>
+        <div className="parallax-bg bg bg-5"></div>
+        <div className="parallax-bg bg bg-6"></div>
+        <div className="parallax-bg bg bg-7"></div>
+        <div className="parallax-bg bg bg-8"></div>
+        <div className="parallax-bg bg bg-9"></div>
+        <div className="parallax-bg bg bg-12"></div>
       </div>
 
       {/* About Section */}
-      <div className="intro-section animation-section" id="about">
+      <div className="intro-section intro tab animation-section" id="about">
         <h2 className="animation-show text-4xl font-bold mb-6">Namma Mysuru</h2>
         <img src={`${base}image.png`} alt="Mysuru" className="animation-show intro-image mb-6" />
         <p className="animation-show intro-text mb-6">
@@ -739,7 +755,7 @@ const LandingScreen = () => {
       </div>
 
       {/* Features/Tour Section */}
-      <div className="features-grid animation-section" id="tour">
+      <div className="features-grid library tab animation-section" id="tour">
         <div className="animation-show feature-card">
           <img src={`${base}map.jpg`} alt="Interactive Map" className="feature-image" />
           <div className="feature-description">
@@ -806,7 +822,7 @@ const LandingScreen = () => {
       </div>
 
       {/* Contact Section */}
-      <div className="contact-section animation-section" id="contact">
+      <div className="contact-section contact tab animation-section" id="contact">
         <div className="contact-content">
           <div className="animation-show flex-1">
             <h2 className="text-4xl font-bold mb-6">Contact Us</h2>
